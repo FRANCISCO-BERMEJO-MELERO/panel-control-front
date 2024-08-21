@@ -1,11 +1,15 @@
 import React from "react";
 
-function User({ nombre, apellidos, id }) {
+function User({ nombre, apellidos, id, email, onDelete }) {
   const backgroundColor = id % 2 === 0 ? "bg-white" : "bg-slate-200";
+
   return (
     <div
       className={`${backgroundColor} border border-inherit flex flex-row p-4 text-center box-border w-full mb-0 items-center`}
     >
+      <div className="flex-1">
+        <p>{id}</p>
+      </div>
       <div className="flex-1">
         <p>{nombre}</p>
       </div>
@@ -13,17 +17,19 @@ function User({ nombre, apellidos, id }) {
         <p>{apellidos}</p>
       </div>
       <div className="flex-1">
-        <p>{id}</p>
-      </div>
-      <div className="flex-1">
-        <p>{apellidos}</p>
+        <p>{email}</p>
       </div>
       <div className="flex-1 space-x-2">
-        <button className="bg-[#ed5464] border-solid rounded p-4 text-white hover:bg-slate-600 ease-in duration-150">
+        <button
+          onClick={onDelete}
+          className="bg-[#ed5464] border-solid rounded p-4 text-white hover:bg-slate-600 ease-in duration-150"
+        >
           Borrar
         </button>
-        <button> </button>
-        <button className="bg-[#f7ac59] border-solid rounded p-4 text-white hover:bg-slate-600 ease-in duration-150">
+        <button
+          id={`${id}`}
+          className="bg-[#f7ac59] border-solid rounded p-4 text-white hover:bg-slate-600 ease-in duration-150"
+        >
           Modificar
         </button>
       </div>

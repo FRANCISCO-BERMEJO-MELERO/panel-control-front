@@ -1,10 +1,10 @@
 import User from "./user";
 import "./styles/styles.css";
 
-function Edituser({ nombre, apellidos, id }) {
+function Edituser({ nombre, apellidos, id, email }) {
   return (
     <div className="flex flex-col bg-[#ffff] w-screen h-screen">
-      <div className="flex flex-row bg-[19a689] p-4 border-2 border-black border-solid hover:bg-slate-600 ease-in duration-150 text-center">
+      <div className="flex flex-row bg-[19a689] p-4 border-2 border-black border-solid text-center">
         <button className="bg-[#19a689] p-2 border-solid rounded text-white hover:bg-slate-600 ease-in duration-150">
           <i class="fa-solid fa-plus"></i> Add
         </button>
@@ -16,6 +16,7 @@ function Edituser({ nombre, apellidos, id }) {
             nombre={nombres}
             apellidos={apellidos[index]}
             id={index}
+            email={email[index]}
           />
         ))}
       </div>
