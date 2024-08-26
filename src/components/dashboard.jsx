@@ -1,6 +1,6 @@
 import { useState } from "react";
 import edituser from "./edituser";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function Dashboard() {
@@ -24,6 +24,16 @@ function Dashboard() {
       <a href="/users">
         <div className="p-4 text-white hover:bg-[#252849] cursor-pointer">
           Modificar usuarios
+        </div>
+      </a>
+      <a href="/users">
+        <div className="p-4 text-white hover:bg-[#252849] cursor-pointer">
+          Denuncias
+        </div>
+      </a>
+      <a href="/users">
+        <div className="p-4 text-white hover:bg-[#252849] cursor-pointer">
+          Notas pizarra
         </div>
       </a>
     </div>
