@@ -1,7 +1,7 @@
 import User from "./user";
 import "./styles/styles.css";
 
-function Edituser({ nombre, apellidos, id, email }) {
+function Edituser({ nombre, id, email }) {
   return (
     <div className="flex flex-col bg-[#ffff] w-screen h-screen">
       <div className="flex flex-row bg-[19a689] p-4 border-2 border-black border-solid text-center">
@@ -10,11 +10,11 @@ function Edituser({ nombre, apellidos, id, email }) {
         </button>
       </div>
       <div className="flex-1 p-4 overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-300">
+
         {nombre.map((nombres, index) => (
           <User
             key={id[index]}
             nombre={nombres}
-            apellidos={apellidos[index]}
             id={index}
             email={email[index]}
           />

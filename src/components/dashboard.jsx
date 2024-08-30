@@ -17,13 +17,9 @@ function Dashboard() {
           <i className="fa-solid fa-user-tie text-xl"></i>
         </div>
       </div>
-      <a href="/">
-        <div className="p-4 text-white hover:bg-[#252849]">Usuarios</div>
-      </a>
-
       <a href="/users">
         <div className="p-4 text-white hover:bg-[#252849] cursor-pointer">
-          Modificar usuarios
+          Usuarios
         </div>
       </a>
       <a href="/users">

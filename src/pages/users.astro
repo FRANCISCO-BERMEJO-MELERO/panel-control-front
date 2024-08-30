@@ -3,32 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import Dashboard from '../components/dashboard';
 import Edituser from '../components/edituser.jsx';
 import { getToken, verifyToken } from './JsonWebToken';
+import {type DataAPI } from "../components/types/DataApi";
 
 //EL CODIGO ESTE LO HE TENIDO QUE HACER CON UNA INTERFAZ PUESTO QUE ME DABA FALLOS A LA HORA DE RECOGER LOS DATOS DE LA API
 //Si podéis averiguar otra forma más sencilla mejor
-interface User {
-  name: string;
-  username: string;
-  id: string;
-  email: string;
-}
-
-let nombre: string[] = [];
-let apellidos: string[] = [];
-let id: string[] = [];
-let email: string[] = [];
 
 // Cogemos el token
-const token = getToken();
 
-// Verificamos el token
-const decoded = verifyToken(token);
 
-if (decoded) {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users/", {
+
+    const response = await fetch("http://5.196.26.7:8080/users", {
+      method: "GET",
       headers: {
-        'Authorization': `Bearer ${token}`
+        "Content-Type": "application/json",
       }
     });
 
@@ -36,28 +23,21 @@ if (decoded) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: User[] = await response.json();
+    const users = await response.json() as DataAPI ;
+    console.log(users);
 
-    // Usar map para obtener los nombres y apellidos
-    nombre = data.map(user => user.name);
-    apellidos = data.map(user => user.username);
-    id = data.map(user => user.id);
-    email = data.map(user => user.email);
 
-  } catch (error) {
-    console.error("Error al obtener los datos del usuario:", error);
-  }
-} else {
-  console.error("Usuario no autenticado.");
-}
+    let nombre = users.map(user => user.username);
+    let id = users.map(user => user.id);  // Usamos directamente el id numérico
+    let email = users.map(user => user.email);
 
 ---
 
 <Layout title="Modificar Usuarios">
   <div class="flex flex-row">
     <Dashboard />
-
+    <Edituser client:load nombre={nombre}  id={id} email={email} />
     <!--Le pasamos a el componente EditUser el nombre y apellidos como array los cuales contienen la info de la api-->
-    <Edituser nombre={nombre} apellidos={apellidos} id={id} email={email} />
+    <!-- <Edituser nombre={nombre} apellidos={apellidos} id={id} email={email} /> -->
   </div>
 </Layout>
